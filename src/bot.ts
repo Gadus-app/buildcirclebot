@@ -67,7 +67,6 @@ bot.command("start", async (ctx) => {
   );
 });
 
-
 bot.callbackQuery("check", async (ctx) => {
   await ctx.answerCallbackQuery();
   if (await isMember(ctx.from.id)) {
@@ -78,3 +77,7 @@ bot.callbackQuery("check", async (ctx) => {
     );
   }
 });
+
+
+
+bot.catch((err) => console.error("Bot error:", err.error));
