@@ -16,6 +16,7 @@ const FILE_PATH = path.join(process.cwd(), "files", "n8n-guide.docx");
 const channelUrl = `https://t.me/${CHANNEL_USERNAME.replace("@", "")}`;
 
 
+
 export const bot = new Bot(BOT_TOKEN);
 async function isMember(userId: number): Promise<boolean> {
   try {
@@ -25,6 +26,23 @@ async function isMember(userId: number): Promise<boolean> {
   } catch (error) {
     console.error("getChatMember failed:", error);
     return false;
+  }
+}
+
+
+const WELCOME_IMAGE = path.join(process.cwd(), "files", "welcome.jpg");
+
+async function sendWelcome(ctx: Context, keyboard: InlineKeyboard) {
+  const text =
+    "👋 Welcome!\n\nJoin our Telegram channel, then tap the second button to get your file.";
+
+  if (existsSync(WELCOME_IMAGE)) {
+    await ctx.replyWithPhoto(new InputFile(WELCOME_IMAGE), {
+      caption: text,
+      reply_markup: keyboard,
+    });
+  } else {
+    await ctx.reply(text, { reply_markup: keyboard });
   }
 }
 
@@ -60,7 +78,8 @@ bot.command("start", async (ctx) => {
     .url("1. Join the channel", channelUrl)
     .row()
     .text("2. I joined, send me the file", "check");
-
+    
+  await sendWelcome(ctx, keyboard);
   await ctx.reply(
     "Welcome! To get the file, please join our Telegram channel first. Then tap the second button.",
     { reply_markup: keyboard }
