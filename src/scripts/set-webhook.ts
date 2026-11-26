@@ -4,7 +4,7 @@ import { Bot } from "grammy";
 async function main() {
   const token = process.env.BOT_TOKEN;
   const url = process.env.URL;
-  if (!token || !url) throw new Error("BOT_TOKEN and PUBLIC_URL are required");
+  if (!token || !url) throw new Error("BOT_TOKEN and URL are required");
 
   const bot = new Bot(token);
   await bot.api.setWebhook(`${url}/api/bot`, {
