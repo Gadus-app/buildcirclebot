@@ -32,7 +32,7 @@ async function isMember(userId: number): Promise<boolean> {
 }
 
 
-const WELCOME_IMAGE = path.join(process.cwd(), "files", "welcome.jpg");
+const WELCOME_IMAGE = path.join(process.cwd(), "files", "welcome.png");
 
 async function sendWelcome(ctx: Context, keyboard: InlineKeyboard) {
   const text =
