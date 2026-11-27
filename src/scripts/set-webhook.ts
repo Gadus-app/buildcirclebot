@@ -3,7 +3,7 @@ import { Bot } from "grammy";
 
 async function main() {
   const token = process.env.BOT_TOKEN;
-  const url = process.env.URL;
+  const url = process.env.URL?.replace(/\/+$/, "");
   if (!token || !url) throw new Error("BOT_TOKEN and URL are required");
 
   const bot = new Bot(token);
