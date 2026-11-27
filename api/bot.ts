@@ -1,4 +1,7 @@
+import { webhookCallback } from "grammy";
 import { bot } from "../src/bot.js";
+
+export default webhookCallback(bot, "https");
 
 async function main() {
   await bot.api.deleteWebhook();
