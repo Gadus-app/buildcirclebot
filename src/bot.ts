@@ -1,3 +1,5 @@
+/// <reference types="node" />
+
 import { existsSync } from "node:fs";
 import path from "node:path";
 import { Bot, Context, InlineKeyboard, InputFile,  } from "grammy";
@@ -80,7 +82,7 @@ bot.command("start", async (ctx) => {
     .text("2. I joined, send me the file", "check");
 
   await sendWelcome(ctx, keyboard);
-  
+
   await ctx.reply(
     "Welcome! To get the file, please join our Telegram channel first. Then tap the second button.",
     { reply_markup: keyboard }
